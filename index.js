@@ -19,7 +19,7 @@ return new Promise((resolve, reject) => {
     });
   }
 
-  return scan();
+  return resolve(scan());
 })
 .then(devices => {
   if (devices.length == 1) {
