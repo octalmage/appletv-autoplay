@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 const { scan, parseCredentials, NowPlayingInfo } = require('node-appletv');
 const inquirer = require('inquirer');
 const Preferences = require('preferences');
@@ -22,6 +23,7 @@ return new Promise((resolve, reject) => {
   return resolve(scan());
 })
 .then(devices => {
+  // TODO: Add an error for no devices.
   if (devices.length == 1) {
     return devices[0];
   }
