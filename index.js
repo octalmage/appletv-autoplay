@@ -24,7 +24,9 @@ return new Promise((resolve, reject) => {
 })
 .then(devices => {
   // TODO: Add an error for no devices.
-  if (devices.length == 1) {
+  if (devices.length === 0) {
+    throw new Error('No Apple TVs found')
+  } else if (devices.length === 1) {
     return devices[0];
   }
   return inquirer.prompt([{
@@ -76,6 +78,9 @@ return new Promise((resolve, reject) => {
 // For short circuiting.
 .catch(device => device)
 .then((device) => {
+  if (device instanceof Error) {
+    throw device;
+  }
   const creds = prefs.devices[device.uid].credentials;
   const uniqueIdentifier = creds.split(':')[0];
   return scan(uniqueIdentifier)
@@ -86,14 +91,32 @@ return new Promise((resolve, reject) => {
 })
 .then((device) => {
   console.log('Connected!')
+  let paused = false;
+  let timer;
   device.on('nowPlaying', (info) => {
     console.log(info.toString())
-    if (info.playbackState === 'paused') {
-      device.sendKeyCommand(10);
-      console.log('Paused, pressing play');
+    if (typeof info.playbackState === 'undefined') {
+      return;
+    }
+
+    switch(info.playbackState) {
+      case 'paused':
+        clearTimeout(timer);
+        paused = true;
+        timer = setTimeout(() => {
+          if (paused === true) {
+            console.log('Paused, pressing play');
+            device.sendKeyCommand(10);
+          }
+        }, 5000);
+        break;
+      case 'playing':
+        clearTimeout(timer);
+        paused = false;
+        break;
     }
   });
 })
 .catch(error => {
-  console.log(error);
+  console.log(error.toString());
 });
