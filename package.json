@@ -1,0 +1,11 @@
+{
+  "name": "appletv-autoplay",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "inquirer": "^6.0.0",
+    "node-appletv": "git://github.com/octalmage/node-appletv.git#issue-7",
+    "preferences": "^1.0.2"
+  }
+}
