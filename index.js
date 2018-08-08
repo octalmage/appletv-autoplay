@@ -35,7 +35,7 @@ return new Promise((resolve, reject) => {
     message: 'Which Apple TV would you like to pair with?',
     choices: devices.map(device => {
       return {
-        name: device.name + " (" + device.address + ":" + device.port + ")",
+        name: device.name + " (" + device.address + ":" + device.port + ") " + device.uid,
         value: device.uid
       };
     })
@@ -106,6 +106,7 @@ return new Promise((resolve, reject) => {
         timer = setTimeout(() => {
           if (paused === true) {
             console.log('Paused, pressing play');
+            device.sendKeyCommand(5);
             device.sendKeyCommand(10);
           }
         }, 5000);
