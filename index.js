@@ -106,8 +106,9 @@ return new Promise((resolve, reject) => {
         timer = setTimeout(() => {
           if (paused === true) {
             console.log('Paused, pressing play');
-            device.sendKeyCommand(5);
-            device.sendKeyCommand(10);
+            // Send both commands to make sure we're covered.
+            device.sendKeyCommand(5); // Play command.
+            device.sendKeyCommand(10); // Select command.
           }
         }, 5000);
         break;
