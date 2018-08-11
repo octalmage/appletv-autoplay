@@ -3,9 +3,6 @@ addons:
   apt:
     packages:
       - libavahi-compat-libdnssd-dev
-cache:
-  directories:
-    - node_modules
 notifications:
   email: false
 node_js:
