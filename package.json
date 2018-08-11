@@ -5,7 +5,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "inquirer": "^6.0.0",
-    "node-appletv": "git://github.com/octalmage/node-appletv.git#issue-7",
+    "@octalmage/node-appletv": "^1.1.0",
     "preferences": "^1.0.2"
   },
   "bin": {

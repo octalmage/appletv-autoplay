@@ -1,5 +1,5 @@
-#! /usr/bin/env node
-const { scan, parseCredentials, NowPlayingInfo } = require('node-appletv');
+#!/usr/bin/env node
+const { scan, parseCredentials, NowPlayingInfo } = require('@octalmage/node-appletv');
 const inquirer = require('inquirer');
 const Preferences = require('preferences');
 const util = require('util');
