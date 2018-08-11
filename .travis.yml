@@ -5,7 +5,6 @@ addons:
       - libavahi-compat-libdnssd-dev
 cache:
   directories:
-    - ~/.npm
     - node_modules
 notifications:
   email: false
