@@ -1,7 +1,7 @@
 # appletv-autoplay
 > Tired of the "are you still watching" prompt?
 
-Apple TV Autoplay connects to your AppleTV as a remote. It then watches the video status (playing vs paused) and will send a click when the video has been paused. So far I've confirmed this works with Netflix and Hulu.
+Apple TV Autoplay connects to your Apple TV as a remote. It then watches the video status (playing vs paused) and will send a click when the video has been paused. So far I've confirmed this works with Netflix and Hulu.
 
 ## Usage
 
