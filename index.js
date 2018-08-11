@@ -3,17 +3,27 @@ const { scan, parseCredentials, NowPlayingInfo } = require('@octalmage/node-appl
 const inquirer = require('inquirer');
 const Preferences = require('preferences');
 const util = require('util');
+const program = require('commander');
+const pjson = require('./package.json');
+
+let uuid;
+
+program
+  .version(pjson.version)
+  .arguments('[uuid]')
+  .action(function (theUuid) {
+     uuid = theUuid;
+  })
+  .parse(process.argv);
 
 const prefs = new Preferences('com.octalmage.applev-autoplay', { devices: {} }, {
   encrypt: false,
   format: 'json'
 });
 
-const args = process.argv.slice(2);
-
 return new Promise((resolve, reject) => {
-  if (args.length > 0 && typeof prefs.devices[args[0]] !== 'undefined') {
-    return scan(args[0])
+  if (uuid) {
+    return scan(uuid)
     .then(devices => {
       // Short circuit to actual connection.
       return reject(devices[0]);
