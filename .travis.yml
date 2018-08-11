@@ -6,6 +6,7 @@ addons:
 cache:
   directories:
     - ~/.npm
+    - node_modules
 notifications:
   email: false
 node_js:
